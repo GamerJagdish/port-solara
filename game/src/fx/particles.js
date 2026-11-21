@@ -116,6 +116,9 @@ export class Particles {
       const heat = this.random();
       this.glowPool.emit(x + this.jitter(1), y + this.random() * 0.6, z + this.jitter(1), this.jitter(0.4), 2 + this.random() * 2, this.jitter(0.4), 0.5 + this.random() * 0.4, 1, 0.45 + heat * 0.4, 0.1, 0.9, -1);
     });
+    this.rate(`flame:${Math.round(x)}:${Math.round(z)}`, 9, dt, () => {
+      this.bigGlowPool.emit(x + this.jitter(0.8), y + 0.3, z + this.jitter(0.8), this.jitter(0.3), 1.6 + this.random(), this.jitter(0.3), 0.55 + this.random() * 0.3, 1, 0.42, 0.08, 0.55, -1);
+    });
     this.smoke(x, y + 1.2, z, 'dark', dt * 0.6, `firesmoke:${Math.round(x)}:${Math.round(z)}`);
   }
 

@@ -13,9 +13,9 @@ export class OfficerBrain {
     this.strafe = game.dice.sign();
   }
 
-  onHurt(ped) {
+  /** Shot officers fire back sooner. */
+  onHurt() {
     this.shootTimer = Math.min(this.shootTimer, 0.5);
-    void ped;
   }
 
   update(ped, dt) {

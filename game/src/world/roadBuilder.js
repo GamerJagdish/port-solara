@@ -5,8 +5,9 @@ import { CITY } from '../core/config.js';
 import { MeshBuilder } from './meshBuilder.js';
 import { cityMaterials } from './materials.js';
 import { nodeX, nodeZ, blockCenterX, blockCenterZ } from './cityLayout.js';
+import { CURB_HEIGHT } from './groundHeight.js';
 
-const CURB = 0.15;
+const CURB = CURB_HEIGHT;
 const YELLOW = new THREE.Color('#f2c230');
 const WHITE = new THREE.Color('#f4f1ea');
 
@@ -110,14 +111,4 @@ function crosswalk(dash, x, z, across) {
     if (across === 'x') dash(x - 1, z + k, x + 1, z + k, 0.7, WHITE);
     else dash(x + k, z - 1, x + k, z + 1, 0.7, WHITE);
   }
-}
-
-/** Height of the walkable ground at a point: curbs raise the sidewalks and lots above the road. */
-export function groundHeightAt(x, z) {
-  const half = CITY.road / 2;
-  if (x < CITY.minX + half || x > CITY.maxX - half || z < CITY.minZ + half || z > CITY.maxZ - half) return 0;
-  const fx = (((x - CITY.originX) % CITY.pitch) + CITY.pitch) % CITY.pitch;
-  const fz = (((z - CITY.originZ) % CITY.pitch) + CITY.pitch) % CITY.pitch;
-  const onRoad = fx <= half || fx >= CITY.pitch - half || fz <= half || fz >= CITY.pitch - half;
-  return onRoad ? 0 : CURB;
 }

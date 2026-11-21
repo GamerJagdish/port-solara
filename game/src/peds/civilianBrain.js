@@ -2,7 +2,7 @@
 // one, lounges about on the beach, and runs for it when there is shooting, a crash or a carjacking
 // nearby. Robbed or punched locals panic; some of them call the police on the player.
 import { PED } from '../core/config.js';
-import { ringPoint, ringParam, nearestRing, atCorner, crossingFrom, beachSpot, ringPerimeter } from './sidewalkPaths.js';
+import { ringPoint, ringParam, nearestRing, atCorner, crossingFrom, beachSpot } from './sidewalkPaths.js';
 
 export class CivilianBrain {
   constructor(game, { ring = null, s = 0, beach = false }) {
@@ -106,4 +106,3 @@ export class CivilianBrain {
   }
 }
 
-export { ringPerimeter };

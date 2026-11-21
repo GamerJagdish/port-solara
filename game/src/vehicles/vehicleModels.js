@@ -15,7 +15,6 @@ function materials() {
   shared.front = new THREE.MeshBasicMaterial({ color: 0xfff6dc, toneMapped: false });
   shared.tire = new THREE.MeshStandardMaterial({ color: 0x1c1c1e, roughness: 0.9 });
   shared.hub = new THREE.MeshStandardMaterial({ color: 0xc9ccd1, roughness: 0.3, metalness: 0.7 });
-  shared.wheel = null;
   shared.police = new THREE.MeshBasicMaterial({ map: signTexture({ title: 'PSPD', subtitle: 'PORT SOLARA POLICE', background: '#f4f4f4', color: '#1d3557', accent: '#e63946' }), transparent: false });
   shared.haldane = new THREE.MeshBasicMaterial({ map: signTexture({ title: 'HALDANE', subtitle: 'SECURE COURIER', background: '#1d3047', color: '#ffd27a', accent: '#ffd27a' }) });
   shared.taxi = new THREE.MeshBasicMaterial({ map: signTexture({ title: 'VIREO CAB', background: '#ffe9a8', color: '#1b1b1b', accent: '#1b1b1b', width: 256, height: 64 }), toneMapped: false });
@@ -106,7 +105,6 @@ export function createVehicleModel(type, paint) {
   root.add(body, glass, front, rear);
 
   const wheels = [];
-  const wheelMaterials = [mats.tire, mats.hub, mats.hub];
   const L = type.length;
   const W = type.width;
   const axle = L / 2 - (type.shape === 'van' ? 1.0 : 0.85);
@@ -122,7 +120,6 @@ export function createVehicleModel(type, paint) {
     root.add(pivot);
     wheels.push({ pivot, spin, front: sz > 0 });
   }
-  void wheelMaterials;
 
   const parts = { root, body, glass, front, rear, rearMaterial, wheels, lightbar: null };
   if (type.police) {

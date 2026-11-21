@@ -117,7 +117,14 @@ export class Vehicle {
     this.sirenOn = false;
   }
 
+  /** Takes the car out of the scene and frees the materials that belong to it alone. */
   dispose(scene) {
     scene.remove(this.mesh);
+    this.model.rearMaterial.dispose();
+    if (this.model.lightbar) {
+      this.model.lightbar.red.dispose();
+      this.model.lightbar.blue.dispose();
+    }
+    if (this.destroyed) this.model.body.material.dispose();
   }
 }

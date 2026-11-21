@@ -6,7 +6,7 @@ import { PLAYER } from '../core/config.js';
 import { createHuman, animateHuman } from '../peds/humanModel.js';
 import { PROTAGONIST } from './playerLook.js';
 import { clamp, dampAngle } from '../core/mathUtils.js';
-import { groundHeightAt } from '../world/roadBuilder.js';
+import { groundHeightAt } from '../world/groundHeight.js';
 import { CivilianBrain } from '../peds/civilianBrain.js';
 
 export class Player {
@@ -91,6 +91,8 @@ export class Player {
   /** Starts getting into a car: walk to the door, pull out any driver, then sit. */
   beginEnter(vehicle) {
     this.entering = { vehicle, time: 0 };
+    // A civilian driver freezes when someone goes for the door.
+    if (vehicle.ai && vehicle.ai.holdFor) vehicle.ai.holdFor(2.5);
   }
 
   enterVehicle(vehicle) {
@@ -182,7 +184,7 @@ export class Player {
       this.pos.z += (dz / d) * step;
       this.heading = dampAngle(this.heading, Math.atan2(dx, dz), 14, dt);
       // A moving car pulls away from a would-be thief.
-      if (vehicle.speed > 9) this.entering = null;
+      if (vehicle.speed > 9 && this.entering.time > 0.8) this.entering = null;
       return;
     }
     this.enterVehicle(vehicle);

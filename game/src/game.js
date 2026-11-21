@@ -2,29 +2,15 @@
 // the render loop, and moves between the title screen, play, pause, death and arrest. Systems reach
 // each other through this object and talk through its event bus.
 import * as THREE from 'three';
-import { STEP, CAMERA } from './core/config.js';
-import { Dice } from './core/random.js';
-import { EventBus } from './core/events.js';
-import { Input } from './core/input.js';
-import { buildCity } from './world/cityBuilder.js';
-import { createSky, Lighting } from './world/skyAndLight.js';
-import { VehicleManager } from './vehicles/vehicleManager.js';
+import { MissionManager } from './missions/missionManager.js';
+import { PoliceManager } from './police/policeManager.js';
+import { WantedLevel } from './police/wantedLevel.js';
 import { TrafficManager } from './traffic/trafficManager.js';
+import { VehicleManager } from './vehicles/vehicleManager.js';
 import { PedestrianManager } from './peds/pedestrianManager.js';
 import { Player } from './player/player.js';
 import { CameraRig } from './player/cameraRig.js';
 import { CombatSystem } from './combat/combatSystem.js';
-import { WantedLevel } from './police/wantedLevel.js';
-import { PoliceManager } from './police/policeManager.js';
-import { MissionManager } from './missions/missionManager.js';
-import { Particles } from './fx/particles.js';
-import { SkidMarks } from './fx/skidMarks.js';
-import { Tracers } from './fx/tracers.js';
-import { Headlights } from './fx/headlights.js';
-import { AudioEngine } from './audio/audioEngine.js';
-import { SoundEffects } from './audio/soundEffects.js';
-import { VehicleAudio } from './audio/vehicleAudio.js';
-import { Radio, STATIONS } from './audio/radio.js';
 import { Hud } from './ui/hud.js';
 import { Minimap } from './ui/minimap.js';
 import { Notifications } from './ui/notifications.js';
@@ -33,7 +19,21 @@ import { SaveGames } from './save/saveGame.js';
 import { Progress } from './progression/progress.js';
 import { Pickups } from './progression/pickups.js';
 import { GunShop } from './progression/gunShop.js';
+import { AudioEngine } from './audio/audioEngine.js';
+import { SoundEffects } from './audio/soundEffects.js';
+import { VehicleAudio } from './audio/vehicleAudio.js';
+import { Radio, STATIONS } from './audio/radio.js';
+import { Particles } from './fx/particles.js';
+import { SkidMarks } from './fx/skidMarks.js';
+import { Tracers } from './fx/tracers.js';
+import { Headlights } from './fx/headlights.js';
+import { buildCity } from './world/cityBuilder.js';
+import { createSky, Lighting } from './world/skyAndLight.js';
 import { place } from './missions/missionPlaces.js';
+import { STEP, CAMERA } from './core/config.js';
+import { Dice } from './core/random.js';
+import { EventBus } from './core/events.js';
+import { Input } from './core/input.js';
 
 export class Game {
   constructor(canvas, { seed = 7, shot = null } = {}) {

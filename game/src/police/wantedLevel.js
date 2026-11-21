@@ -5,8 +5,8 @@
 import { WANTED } from '../core/config.js';
 
 const CRIME_HEAT = {
-  carjack: 55,
-  theft: 30,
+  carjack: 34,
+  theft: 20,
   assault: 30,
   assaultOfficer: 130,
   murder: 110,

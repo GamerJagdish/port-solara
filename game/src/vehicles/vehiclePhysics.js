@@ -2,7 +2,7 @@
 // with speed and steering, the velocity is split into forward and sideways parts, the engine and brakes
 // work on the forward part and tyre grip bleeds off the sideways part, so a handbrake turn slides.
 import { clamp, damp } from '../core/mathUtils.js';
-import { groundHeightAt } from '../world/roadBuilder.js';
+import { groundHeightAt } from '../world/groundHeight.js';
 
 export function stepVehicle(vehicle, dt) {
   const type = vehicle.type;

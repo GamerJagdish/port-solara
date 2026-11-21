@@ -80,9 +80,9 @@ function chaseScene(game) {
   target.ai.rejoinRoad();
   game.wanted.force(3);
   const units = [
-    { x: laneX - 3.4, z: z0 + 10 },
-    { x: laneX + 0.4, z: z0 + 18 },
-    { x: laneX - 4.6, z: z0 + 27 },
+    { x: laneX - 3.6, z: z0 + 7.5 },
+    { x: laneX + 0.2, z: z0 + 13 },
+    { x: laneX - 4.2, z: z0 + 19.5 },
   ];
   for (const spec of units) {
     const unit = game.police.spawnUnit(0, 999, { at: { x: spec.x, z: spec.z, heading: Math.PI } });
@@ -99,10 +99,10 @@ function chaseScene(game) {
   simulate(game, 36, () => hold(game, ['KeyW']));
   const rig = game.cameraRig;
   rig.carYawOffset = Math.PI + 0.58;
-  rig.carPitch = 0.17;
+  rig.carPitch = 0.15;
   rig.mouseIdle = 0;
   rig.yaw = car.heading + rig.carYawOffset;
-  rig.distance = 10.5;
+  rig.distance = 9;
   simulate(game, 2, () => hold(game, ['KeyW']));
   rig.yaw = car.heading + rig.carYawOffset;
   rig.mouseIdle = 0;
@@ -165,7 +165,7 @@ function combatScene(game) {
   const aimAt = (enemy) => {
     const p = game.player.pos;
     rig.yaw = Math.atan2(enemy.pos.x - p.x, enemy.pos.z - p.z) - 0.05;
-    rig.pitch = 0.05;
+    rig.pitch = 0.2;
   };
   // Drop the first enforcer, then line up on the next and fire.
   game.input.mouseDown[2] = true;

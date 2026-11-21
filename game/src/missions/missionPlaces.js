@@ -1,6 +1,6 @@
 // Named places the story refers to, resolved to ground coordinates from the city plan.
 import { CITY } from '../core/config.js';
-import { LANDMARK_BLOCKS, blockCenterX, blockCenterZ, nodeX, nodeZ, PIER } from '../world/cityLayout.js';
+import { LANDMARK_BLOCKS, blockCenterX, blockCenterZ, nodeX, PIER } from '../world/cityLayout.js';
 
 const gull = LANDMARK_BLOCKS.luckyGull;
 const taco = LANDMARK_BLOCKS.tacoStand;
@@ -29,5 +29,3 @@ export function place(name) {
   return PLACES[name];
 }
 
-/** Spots along the Seaglass Parade beach road, used by the screenshot scenes. */
-export const PARADE_Z = nodeZ(CITY.rows);

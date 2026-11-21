@@ -6,7 +6,6 @@ import { MeshBuilder } from './meshBuilder.js';
 import { cityMaterials } from './materials.js';
 import { signTexture } from './textures.js';
 import { createRandom } from '../core/random.js';
-import { CITY } from '../core/config.js';
 
 const CONTAINER_COLORS = ['#c0392b', '#1f6fa8', '#2a9d8f', '#e07b39', '#e9e4d8', '#6b4f9e', '#d4a72c'];
 
@@ -272,4 +271,3 @@ export function parkedCarSlots(plan) {
   return slots;
 }
 
-export const ISLAND = CITY.bounds;

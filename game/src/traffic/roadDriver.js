@@ -20,6 +20,12 @@ export class RoadDriver {
     this.reverseTime = 0;
     this.panic = 0;
     this.honkCooldown = 0;
+    this.halt = 0;
+  }
+
+  /** Stops dead for a moment (someone is yanking the door open). */
+  holdFor(seconds) {
+    this.halt = Math.max(this.halt, seconds);
   }
 
   /** Puts the driver on the segment a → b, keeping only waypoints still ahead of the car. */
@@ -87,6 +93,13 @@ export class RoadDriver {
     const c = v.controls;
     this.honkCooldown -= dt;
     this.panic = Math.max(0, this.panic - dt);
+    if (this.halt > 0) {
+      this.halt -= dt;
+      c.throttle = 0;
+      c.brake = 1;
+      c.handbrake = false;
+      return;
+    }
     if (this.route.length === 0) this.rejoinRoad();
     while (this.route.length && Math.hypot(this.route[0].x - v.pos.x, this.route[0].z - v.pos.z) < 4.5) this.route.shift();
     while (this.route.length < 4) this.extend();

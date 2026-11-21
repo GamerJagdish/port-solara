@@ -9,6 +9,9 @@ import { MissionMarkers } from './markers.js';
 import { CAST } from '../player/playerLook.js';
 import { formatCash } from '../core/mathUtils.js';
 
+/** Steps that finish in a single update: the HUD keeps showing the previous objective through them. */
+const INSTANT_STEPS = new Set(['spawnVehicle', 'forceWanted', 'givePistol', 'pickup', 'phone']);
+
 class IdleBrain {
   constructor(heading) {
     this.heading = heading;
@@ -128,6 +131,7 @@ export class MissionManager {
     const { mission, index, ctx } = this.active;
     const step = mission.steps[index];
     if (!step) return null;
+    if (INSTANT_STEPS.has(step.type) && this.view) return this.view;
     const type = STEP_TYPES[step.type];
     const text = type.text ? type.text(ctx, step) : step.text ?? null;
     return {

@@ -5,7 +5,7 @@ import * as THREE from 'three';
 import { createHuman, animateHuman } from './humanModel.js';
 import { PED } from '../core/config.js';
 import { dampAngle } from '../core/mathUtils.js';
-import { groundHeightAt } from '../world/roadBuilder.js';
+import { groundHeightAt } from '../world/groundHeight.js';
 
 let nextId = 1;
 
